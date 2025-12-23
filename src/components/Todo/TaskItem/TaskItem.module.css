@@ -1,0 +1,112 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 8px;
+  padding: 18px 18px 18px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-left: 10px solid transparent;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.done {
+  text-decoration: line-through;
+  color: #777;
+}
+
+.priority {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.doneBtn {
+  background: #1e8e3e;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.undoBtn {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.deleteBtn {
+  background: #d93025;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.doneBtn:hover {
+  background: #166c2f;
+}
+
+.undoBtn:hover {
+  background: #125aa3;
+}
+
+.deleteBtn:hover {
+  background: #b3261e;
+}
+
+.high {
+  border-left-color: #d93025;
+}
+
+.medium {
+  border-left-color: #f9ab00;
+}
+
+.low {
+  border-left-color: #1e8e3e;
+}
+
+@media (max-width: 600px) {
+  .item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .doneBtn,
+  .undoBtn,
+  .deleteBtn {
+    flex: 1;
+  }
+}
