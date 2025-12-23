@@ -1,6 +1,6 @@
 import styles from "./TaskForm.module.css";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useForm } from "react-hook-form";// no useState for each input 
+import { yupResolver } from "@hookform/resolvers/yup"; // validation roles yup + react-hook-form
 import * as yup from "yup";
 
 const noArabicRegex = /^[^\u0600-\u06FF]*$/;
@@ -13,10 +13,12 @@ const schema = yup.object({
     .required("Task name is required")
     .test("no-arabic", "Arabic is not allowed", (val) =>
       val ? noArabicRegex.test(val) : true
-    )
+    ) // .test(testName, errorMessage, function)
+
     .test("english-only", "Only English letters and spaces are allowed", (val) =>
       val ? englishSpacesRegex.test(val) : true
     )
+
     .max(50, "Task name must be less than 50 characters")
     .test("capital-first", "First letter must be capital", (val) =>
       val ? startsWithCapitalRegex.test(val.trim()) : true
@@ -49,7 +51,7 @@ function TaskForm({ onAddTask }) {
   const nameValue = watch("name");
   const priorityValue = watch("priority");
 
-  const canSubmit = isValid && nameValue?.trim() && priorityValue;
+  const canSubmit = isValid && nameValue?.trim() && priorityValue; // name exit after trim 
 
   const showNameError =
     (touchedFields.name || isSubmitted || nameValue) && errors.name;

@@ -7,7 +7,7 @@ function TaskItem({ task, onToggle, onDelete, onUpdateName }) {
 
   const save = () => {
     const trimmed = value.trim();
-    if (!trimmed) {
+    if (!trimmed) {// if empty 
       setValue(task.name);
       setIsEditing(false);
       return;

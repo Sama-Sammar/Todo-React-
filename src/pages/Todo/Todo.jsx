@@ -13,7 +13,7 @@ function Todo() {
 
   const addTask = ({ name, priority }) => {
     const newTask = {
-      id: Date.now(),
+      id: Date.now(), // unique id 
       name,
       priority,
       completed: false,
@@ -22,7 +22,7 @@ function Todo() {
   };
 
   const deleteTask = (id) => {
-    setTasks((prev) => prev.filter((t) => t.id !== id));
+    setTasks((prev) => prev.filter((t) => t.id !== id)); // new array
   };
 
   const toggleTask = (id) => {
