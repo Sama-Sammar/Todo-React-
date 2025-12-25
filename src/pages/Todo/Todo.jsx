@@ -8,7 +8,7 @@ import TaskItem from "../../components/Todo/TaskItem";
 import tasksData from "../../mocks/tasks";
 
 function Todo() {
-  const [tasks, setTasks] = useState(tasksData);
+  const [tasks, setTasks] = useState(tasksData); 
   const [filter, setFilter] = useState("All");
 
   const addTask = ({ name, priority }) => {
@@ -29,7 +29,7 @@ function Todo() {
     setTasks((prev) =>
       prev.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t))
     );
-  };
+  };  
 
   // Inline edit 
   const updateTaskName = (id, newName) => {
@@ -47,7 +47,7 @@ function Todo() {
         <h1 className={styles.title}>To-Do List</h1>
         <div className={styles.divider}></div>
         <div className={styles.section}>
-          <TaskForm onAddTask={addTask} />
+          <TaskForm onAddTask={addTask} /> 
         </div>
 
         <div className={styles.section}>

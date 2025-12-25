@@ -34,30 +34,16 @@ function TaskForm({ onAddTask }) {
   const {
     register,
     handleSubmit,
-    trigger,
+    setValue,
     formState: { errors, touchedFields, isSubmitted, isValid },
     reset,
-    watch,
   } = useForm({
     resolver: yupResolver(schema),
 
     mode: "onTouched",
-    reValidateMode: "onChange",
-    criteriaMode: "all",
 
     defaultValues: { name: "", priority: "" },
   });
-
-  const nameValue = watch("name");
-  const priorityValue = watch("priority");
-
-  const canSubmit = isValid && nameValue?.trim() && priorityValue; // name exit after trim 
-
-  const showNameError =
-    (touchedFields.name || isSubmitted || nameValue) && errors.name;
-
-  const showPriorityError =
-    (touchedFields.priority || isSubmitted) && errors.priority;
 
   const onSubmit = (data) => {
     onAddTask({ name: data.name.trim(), priority: data.priority });
@@ -73,13 +59,11 @@ function TaskForm({ onAddTask }) {
           placeholder="Enter task"
           type="text"
           {...register("name", {
-            onChange: async () => {
-              await trigger("name");
-            },
+            onChange: (e) => setValue(e.target.value)
           })}
         />
 
-        {showNameError && <p className={styles.error}>{errors.name.message}</p>}
+        {(touchedFields.name || isSubmitted) && errors.name && <p className={styles.error}>{errors.name.message}</p>}
       </div>
 
       <div className={styles.field}>
@@ -92,12 +76,12 @@ function TaskForm({ onAddTask }) {
           <option value="Low">Low</option>
         </select>
 
-        {showPriorityError && (
+        {(touchedFields.priority || isSubmitted) && errors.priority && (
           <p className={styles.error}>{errors.priority.message}</p>
         )}
       </div>
 
-      <button className={styles.addBtn} type="submit" disabled={!canSubmit}>
+      <button className={styles.addBtn} type="submit" disabled={!isValid}>
         Add Task
       </button>
     </form>

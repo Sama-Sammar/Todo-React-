@@ -3,7 +3,7 @@ import styles from "./TaskItem.module.css";
 
 function TaskItem({ task, onToggle, onDelete, onUpdateName }) {
   const [isEditing, setIsEditing] = useState(false);
-  const [value, setValue] = useState(task.name);
+  const [value, setValue] = useState(task.name); 
 
   const save = () => {
     const trimmed = value.trim();
@@ -35,10 +35,10 @@ function TaskItem({ task, onToggle, onDelete, onUpdateName }) {
             onChange={(e) => setValue(e.target.value)}
             onBlur={save}
             onKeyDown={handleKeyDown}
-          />
+            />
         ) : (
           <p
-            className={`${styles.name} ${task.completed ? styles.done : ""}`}
+            className={`${styles.name} ${task.completed && styles.done}`}
             onClick={() => {
               if (!task.completed) setIsEditing(true);
             }}
